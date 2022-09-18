@@ -4,8 +4,17 @@ import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Embeddable
 public class OrderId implements Serializable {
 
-    public Long orderId;
+    private Long orderId;
+
+    protected OrderId() {}
+
+    public String orderIdString() {
+        return String.valueOf(orderId);
+    }
 }
