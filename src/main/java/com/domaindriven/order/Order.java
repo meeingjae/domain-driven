@@ -1,9 +1,11 @@
 package com.domaindriven.order;
 
-import javax.persistence.Access;
+import java.util.List;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -32,9 +34,12 @@ public class Order {
     })
     private ShippingInfo shippingInfo;
 
+    @Convert(converter = MoneyConverter.class)
+    private Money money;
+
     @Override
     public String toString() {
         return "orderId:" + orderId.orderIdString() + " address:" + shippingInfo.address() +
-               " zipCode:" + shippingInfo.zipCode();
+               " zipCode:" + shippingInfo.zipCode() + " money:" + money.moneyString();
     }
 }
