@@ -2,6 +2,7 @@ package com.domaindriven.order;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.AllArgsConstructor;
 @Embeddable
 public class OrderId implements Serializable {
 
+    @Column(name = "order_id")
     private Long orderId;
 
     protected OrderId() {}
