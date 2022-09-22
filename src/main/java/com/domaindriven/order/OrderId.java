@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 @Embeddable
 public class OrderId implements Serializable {
 
+    private static final long serialVersionUID = 6505186025845150423L;
     @Column(name = "order_id")
     private Long orderId;
 

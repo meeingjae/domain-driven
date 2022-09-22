@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 @Embeddable
 public class ProductId {
 
-    private long productId;
+    private Long productId;
 
     protected ProductId() {}
 }
