@@ -24,8 +24,6 @@ public class OrderTest {
                         new ShippingInfo("address", "zipCode"),
                         new Money(1000L),
                         Collections.singletonList(new OrderLine(
-                                new ProductId(1L),
-//                                1L,
                                 new Money(100L),
                                 3))),
                 new Order(
@@ -33,8 +31,6 @@ public class OrderTest {
                         new ShippingInfo("address2", "zipCode2"),
                         new Money(2000000L),
                         Collections.singletonList(new OrderLine(
-                                new ProductId(2L),
-//                                1L,
                                 new Money(100L),
                                 3)))
         ));
