@@ -44,9 +44,13 @@ public class Order {
     @OrderColumn(name = "order_line_idx")
     private List<OrderLine> orderLines;
 
+    @Convert(converter = EmailSetConverter.class)
+    private EmailSet emailSet;
+
     @Override
     public String toString() {
         return "orderId:" + orderId.orderIdString() + " address:" + shippingInfo.address() +
-               " zipCode:" + shippingInfo.zipCode() + " money:" + money.moneyString();
+               " zipCode:" + shippingInfo.zipCode() + " money:" + money.moneyString() +
+               " email: " + emailSet.getEmailString();
     }
 }
