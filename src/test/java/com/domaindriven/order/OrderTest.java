@@ -7,9 +7,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 
 @SpringBootTest
 public class OrderTest {
@@ -17,8 +20,8 @@ public class OrderTest {
     @Autowired
     OrderRepository orderRepository;
 
-    @Test
-    void saveAndFind() {
+    @BeforeEach
+    public void before() {
         orderRepository.saveAll(Arrays.asList(
                 new Order(
                         new OrderId(1L),
@@ -45,10 +48,23 @@ public class OrderTest {
                                 new Email("email4@naver.com")
                         ))
                 )));
+    }
+
+    @Test
+    void saveAndFind() {
 
         List<Order> order = orderRepository.findAll();
         order.forEach(System.out::println);
         assertThat(order).hasSize(2);
+    }
+
+    @Test
+    void specTest() {
+        Specification<Order> orderIdSepc = OrderSpec.orderIdSpec(new OrderId(1L));
+        Specification<Order> orderMoneySpec = OrderSpec.orderMoneySpec(new Money(1000L));
+        List<Order> orders = orderRepository.findAll(orderIdSepc.and(orderMoneySpec));
+        orders.forEach(it -> System.out.println(it.toString()));
+        assertThat(orders).hasSize(1);
     }
 }
 
