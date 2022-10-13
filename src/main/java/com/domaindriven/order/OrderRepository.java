@@ -10,4 +10,9 @@ import org.springframework.stereotype.Repository;
 public interface OrderRepository extends JpaRepository<Order, OrderId> {
 
     List<Order> findAll(Specification<Order> spec);
+
+    List<Order> findFirst10ByOrderId(
+            OrderId orderId); // 조회 결과 중 처음부터 N 개의 결과가 필요할 경우 = Firstn 형식 사용 --> 모든 조회 로직을 처리한 후 n개만 응답
+
+    List<Order> findFirstByOrderId(OrderId orderId); // 조회 결과 첫 원소 리턴
 }
