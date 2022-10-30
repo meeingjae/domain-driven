@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Version;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -46,6 +48,9 @@ public class Order {
 
     @Convert(converter = EmailSetConverter.class)
     private EmailSet emailSet;
+
+    @Version
+    private long version;
 
     @Override
     public String toString() {
